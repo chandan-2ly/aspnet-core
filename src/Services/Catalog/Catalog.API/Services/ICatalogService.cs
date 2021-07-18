@@ -1,0 +1,17 @@
+﻿using Catalog.API.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Catalog.API
+{
+    public interface ICatalogService
+    {
+        Task<IEnumerable<Product>> GetProducts();
+        Task<Product> GetProductById(string id);
+        Task<IEnumerable<Product>> GetProductByCategory(string category);
+        Task<IEnumerable<Product>> GetProductByName(string name);
+        Task CreateProduct(Product product);
+        Task<bool> UpdateProduct(Product product);
+        Task<bool> DeleteProduct(string id);
+    }
+}
