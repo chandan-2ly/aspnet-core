@@ -28,12 +28,22 @@ namespace Catalog.API.Services
 
         public async Task<IEnumerable<Product>> GetProductByCategory(string category)
         {
-            return await _productRepository.GetProductByCategory(category);
+            var result = await _productRepository.GetProductByCategory(category);
+            if (result == null)
+            {
+                _logger.LogError($"Product with Category: {category}, not found.");
+            }
+            return result;
         }
 
         public async Task<Product> GetProductById(string id)
         {
-            return await _productRepository.GetProductById(id);
+            var result = await _productRepository.GetProductById(id);
+            if(result == null)
+            {
+                _logger.LogError($"Product with Id: {id}, not found.");
+            }
+            return result;
         }
 
         public async Task<IEnumerable<Product>> GetProductByName(string name)
