@@ -29,13 +29,13 @@ namespace Discount.API.Controllers
             return Ok(coupon);
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Coupon>> GetAllDiscounts()
-        {
-            var coupon = await _discountRepository.GetDiscount(productName);
-            return Ok(coupon);
-        }
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<Coupon>> GetAllDiscounts()
+        //{
+        //    var coupon = await _discountRepository.GetDiscount(productName);
+        //    return Ok(coupon);
+        //}
 
         [HttpPost]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
