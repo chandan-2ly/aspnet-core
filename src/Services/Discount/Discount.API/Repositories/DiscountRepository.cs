@@ -3,6 +3,7 @@ using Discount.API.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Discount.API.Repositories
@@ -44,6 +45,21 @@ namespace Discount.API.Repositories
                 return new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Description" };
             }
             
+            return coupon;
+        }
+
+        public async Task<Coupon> GetAllDiscount()
+        {
+            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+
+            var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>
+                ("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = "" });
+
+            if (coupon == null)
+            {
+                return new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Description" };
+            }
+
             return coupon;
         }
 
