@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ordering.Application.Exception
+namespace Ordering.Application.Exceptions
 {
     public class NotFoundException : ApplicationException
     {
