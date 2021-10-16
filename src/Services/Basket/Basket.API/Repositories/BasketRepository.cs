@@ -32,7 +32,14 @@ namespace Basket.API.Repositories
 
         public async Task<ShoppingCart> UpdateBasket(ShoppingCart basket)
         {
-            await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(basket));
+            var items = await _redisCache.GetStringAsync(basket.UserName);
+            var existingItems = JsonConvert.DeserializeObject<ShoppingCart>(items);
+            if(existingItems != null)
+            {
+                existingItems.Items.AddRange(basket.Items);
+            }
+
+            await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(existingItems));
             return await GetBasket(basket.UserName);
         }
     }
