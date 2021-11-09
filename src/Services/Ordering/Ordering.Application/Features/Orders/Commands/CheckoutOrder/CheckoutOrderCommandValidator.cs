@@ -2,9 +2,9 @@
 
 namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
 {
-    public class CheckoutOrderCommandValidatort : AbstractValidator<CheckoutOrderCommand>
+    public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderCommand>
     {
-        public CheckoutOrderCommandValidatort()
+        public CheckoutOrderCommandValidator()
         {
             RuleFor(p => p.UserName)
                 .NotEmpty().WithMessage("{UserName} is required")
