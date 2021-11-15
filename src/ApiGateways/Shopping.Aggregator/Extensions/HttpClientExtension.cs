@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,8 +16,8 @@ namespace Shopping.Aggregator.Extensions
             }
 
             var dataAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonSerializer
-                .Deserialize<T>(dataAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var result =  JsonConvert.DeserializeObject<T>(dataAsString);
+            return result;
         }
     }
 }
