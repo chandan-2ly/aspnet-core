@@ -1,7 +1,7 @@
 ﻿using Catalog.API.Entities;
-using Catalog.API.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -12,26 +12,19 @@ namespace Catalog.API.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly ICatalogService _catalogService;
-        public CatalogController(ICatalogService catalogService)
+        private readonly ILogger<CatalogController> _logger;
+        public CatalogController(ICatalogService catalogService, ILogger<CatalogController> logger)
         {
             _catalogService = catalogService;
+            _logger = logger;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(WebApiResponseModel), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetProducts()
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var webApiResponse = new WebApiResponseModel();
-            
             var result = await _catalogService.GetProducts();
-            
-            if(result != null)
-            {
-                webApiResponse.IsSuccess = true;
-                webApiResponse.Data = result;
-            }
-
-            return Ok(webApiResponse);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -39,10 +32,8 @@ namespace Catalog.API.Controllers
         public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
             await _catalogService.CreateProduct(product);
-            var webApiResponse = new WebApiResponseModel();
-            webApiResponse.IsSuccess = true;
-            webApiResponse.Data = product;
-            return Ok(webApiResponse);
+
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
 
         [HttpPut]
@@ -60,72 +51,57 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
-        [ProducesResponseType(typeof(WebApiResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetProductById(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {
-                var webApiResponse = new WebApiResponseModel();
                 var result = await _catalogService.GetProductById(id);
 
-                if (result != null)
+                if (result == null)
                 {
-                    webApiResponse.IsSuccess = true;
-                    webApiResponse.Data = result;
-                    return Ok(webApiResponse);
-                }
-                else
-                {
+                    _logger.LogError($"Product with id: {id}, not found.");
                     return NotFound();
                 }
+                return Ok(result);
             }
             return BadRequest("Invalid Input");
         }
 
         [HttpGet]
         [Route("[action]/{category}", Name = "GetProductByCategory")]
-        [ProducesResponseType(typeof(WebApiResponseModel), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetProductByCategory(string category)
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)
         {
             if (!string.IsNullOrEmpty(category))
             {
-                var webApiResponse = new WebApiResponseModel();
                 var result = await _catalogService.GetProductByCategory(category);
 
-                if (result != null)
+                if (result == null)
                 {
-                    webApiResponse.IsSuccess = true;
-                    webApiResponse.Data = result;
-                    return Ok(webApiResponse);
-                }
-                else
-                {
+                    _logger.LogError($"Products with category: {category}, not found.");
                     return NotFound();
                 }
+                return Ok(result);
             }
             return BadRequest("Invalid Input");
         }
 
         [HttpGet]
         [Route("[action]/{name}", Name = "GetProductByName")]
-        [ProducesResponseType(typeof(WebApiResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetProductByName(string name)
         {
             if (!string.IsNullOrEmpty(name))
             {
-                var webApiResponse = new WebApiResponseModel();
                 var result = await _catalogService.GetProductByName(name);
 
-                if (result != null)
+                if (result == null)
                 {
-                    webApiResponse.IsSuccess = true;
-                    webApiResponse.Data = result;
-                    return Ok(webApiResponse);
-                }
-                else
-                {
+                    _logger.LogError($"Product with name: {name}, not found.");
                     return NotFound();
                 }
+                return Ok(result);
             }
             return BadRequest("Invalid Input");
         }

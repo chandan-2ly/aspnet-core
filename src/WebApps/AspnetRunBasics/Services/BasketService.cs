@@ -24,7 +24,7 @@ namespace AspnetRunBasics.Services
             }
             else
             {
-                throw new Exception("Something went wrong while calling api. ");
+                throw new Exception("Something went wrong while calling api. "); 
             }
         }
 
