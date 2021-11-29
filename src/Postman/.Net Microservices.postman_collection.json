@@ -1,0 +1,642 @@
+{
+	"info": {
+		"_postman_id": "52a977fb-a7b3-44fe-856a-7ff49e6c3fee",
+		"name": ".Net Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Gateways",
+			"item": [
+				{
+					"name": "OcelotApiGateway",
+					"item": [
+						{
+							"name": "Ordering API",
+							"item": [
+								{
+									"name": "Get Oder By UserName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Order/chandan",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Order",
+												"chandan"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Catalog API",
+							"item": [
+								{
+									"name": "GetProducts",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Catalog",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetProductById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Catalog/602d2149e773f2a3990b47f5",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog",
+												"602d2149e773f2a3990b47f5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetProductByCategory",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Catalog/GetProductByCategory/Smart Phone",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog",
+												"GetProductByCategory",
+												"Smart Phone"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetProductByName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Catalog/GetProductByName/Samsung 10",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog",
+												"GetProductByName",
+												"Samsung 10"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateProduct",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"\",\r\n            \"name\": \"Samsung 99\",\r\n            \"category\": \"Smart Phone\",\r\n            \"summary\": \"This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.\",\r\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.\",\r\n            \"imageFile\": \"product-2.png\",\r\n            \"price\": 999.00\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API Gateway}}/Catalog",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProduct",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"602d2149e773f2a3990b47f6\",\r\n            \"name\": \"Samsung 10\",\r\n            \"category\": \"Smart Phone\",\r\n            \"summary\": \"This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.\",\r\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.\",\r\n            \"imageFile\": \"product-2.png\",\r\n            \"price\": 850.00\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API Gateway}}/Catalog",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteProduct",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Catalog/DeleteProduct",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Catalog",
+												"DeleteProduct"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Basket API",
+							"item": [
+								{
+									"name": "Create Basket",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userName\": \"chandan\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 10,\r\n      \"color\": \"blue\",\r\n      \"price\": 1000,\r\n      \"productId\": \"602d2149e773f2a3990b47f6\",\r\n      \"productName\": \"Samsung 10\"\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API Gateway}}/Basket",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Basket"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetBasketByUserName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Basket/chandan",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Basket",
+												"chandan"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Basket Checkout",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"userName\": \"chandan\",\r\n  \"totalPrice\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"emailAddress\": \"chandansah625@gmail.com\",\r\n  \"addressLine\": \"string\",\r\n  \"country\": \"string\",\r\n  \"state\": \"string\",\r\n  \"zipCode\": \"string\",\r\n  \"cardName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expiration\": \"string\",\r\n  \"cvv\": \"string\",\r\n  \"paymentMethod\": 0\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API Gateway}}/Basket/Checkout",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Basket",
+												"Checkout"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteBasketByUserName",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{API Gateway}}/Basket/chandan",
+											"host": [
+												"{{API Gateway}}"
+											],
+											"path": [
+												"Basket",
+												"chandan"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Shopping Aggregator",
+					"item": [
+						{
+							"name": "Shopping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Shopping Aggregator}}/Shopping/chandan",
+									"host": [
+										"{{Shopping Aggregator}}"
+									],
+									"path": [
+										"Shopping",
+										"chandan"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Catalog API",
+			"item": [
+				{
+					"name": "GetProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Catalog}}/Catalog",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Catalog}}/Catalog/602d2149e773f2a3990b47f6",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog",
+								"602d2149e773f2a3990b47f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Catalog}}/Catalog/GetProductByCategory/Smart Phone",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog",
+								"GetProductByCategory",
+								"Smart Phone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Catalog}}/Catalog/GetProductByName/Samsung 10",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog",
+								"GetProductByName",
+								"Samsung 10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n            \"name\": \"Samsung 99\",\r\n            \"category\": \"Smart Phone\",\r\n            \"summary\": \"This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.\",\r\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.\",\r\n            \"imageFile\": \"product-2.png\",\r\n            \"price\": 999.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Catalog}}/Catalog",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"602d2149e773f2a3990b47f6\",\r\n            \"name\": \"Samsung 10\",\r\n            \"category\": \"Smart Phone\",\r\n            \"summary\": \"This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.\",\r\n            \"description\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.\",\r\n            \"imageFile\": \"product-2.png\",\r\n            \"price\": 850.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Catalog}}/Catalog",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Catalog}}/Catalog/DeleteProduct",
+							"host": [
+								"{{Catalog}}"
+							],
+							"path": [
+								"Catalog",
+								"DeleteProduct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Basket API",
+			"item": [
+				{
+					"name": "GetBasketByUserName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Basket}}/Basket/chandan",
+							"host": [
+								"{{Basket}}"
+							],
+							"path": [
+								"Basket",
+								"chandan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBasketByUserName",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Basket}}/Basket/chandan",
+							"host": [
+								"{{Basket}}"
+							],
+							"path": [
+								"Basket",
+								"chandan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"chandan\",\r\n  \"items\": [\r\n    {\r\n      \"quantity\": 10,\r\n      \"color\": \"blue\",\r\n      \"price\": 1000,\r\n      \"productId\": \"602d2149e773f2a3990b47f6\",\r\n      \"productName\": \"Samsung 10\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Basket}}/Basket",
+							"host": [
+								"{{Basket}}"
+							],
+							"path": [
+								"Basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basket Checkout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"chandan\",\r\n  \"totalPrice\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"emailAddress\": \"chandansah625@gmail.com\",\r\n  \"addressLine\": \"string\",\r\n  \"country\": \"string\",\r\n  \"state\": \"string\",\r\n  \"zipCode\": \"string\",\r\n  \"cardName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expiration\": \"string\",\r\n  \"cvv\": \"string\",\r\n  \"paymentMethod\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Basket}}/Basket/Checkout",
+							"host": [
+								"{{Basket}}"
+							],
+							"path": [
+								"Basket",
+								"Checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordering API",
+			"item": [
+				{
+					"name": "Get Oder By UserName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Ordering}}/Order/chandan",
+							"host": [
+								"{{Ordering}}"
+							],
+							"path": [
+								"Order",
+								"chandan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"string\",\r\n  \"totalPrice\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"emailAddress\": \"string\",\r\n  \"addressLine\": \"string\",\r\n  \"country\": \"string\",\r\n  \"state\": \"string\",\r\n  \"zipCode\": \"string\",\r\n  \"cardName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expiration\": \"string\",\r\n  \"cvv\": \"string\",\r\n  \"paymentMethod\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Ordering}}/Order",
+							"host": [
+								"{{Ordering}}"
+							],
+							"path": [
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userName\": \"string\",\r\n  \"totalPrice\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"emailAddress\": \"string\",\r\n  \"addressLine\": \"string\",\r\n  \"country\": \"string\",\r\n  \"state\": \"string\",\r\n  \"zipCode\": \"string\",\r\n  \"cardName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expiration\": \"string\",\r\n  \"cvv\": \"string\",\r\n  \"paymentMethod\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Ordering}}/Order",
+							"host": [
+								"{{Ordering}}"
+							],
+							"path": [
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Ordering}}/Order/1",
+							"host": [
+								"{{Ordering}}"
+							],
+							"path": [
+								"Order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
